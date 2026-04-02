@@ -24,6 +24,8 @@ end
 SimpleCov.start('rails')
 
 RSpec.configure do |config|
+  config.infer_spec_type_from_file_location!
+
   config.include(FactoryBot::Syntax::Methods)
   config.include(Shoulda::Matchers::ActiveModel, type: :model)
   config.include(Shoulda::Matchers::ActiveRecord, type: :model)

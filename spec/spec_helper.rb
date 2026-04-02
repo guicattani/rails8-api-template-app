@@ -7,26 +7,6 @@ require 'dotenv'
 Dotenv.load
 
 RSpec.configure do |config|
-  if ENV["USE_TEST_CONTAINERS"]&.downcase == "true"
-    config.add_setting :postgres_container, default: nil
-
-    config.before(:suite) do
-      config.postgres_container = Testcontainers::PostgresContainer.new.start
-      ENV["DATABASE_URL"] = config.postgres_container.database_url
-
-      Rails.application.load_tasks
-      Rake::Task['db:test:prepare'].invoke
-      ActiveRecord::Migration.maintain_test_schema!
-    rescue ActiveRecord::PendingMigrationError => e
-      abort e.to_s.strip
-    end
-
-    config.after(:suite) do
-      config.postgres_container&.stop
-      config.postgres_container&.remove
-    end
-  end
-
   Kernel.srand config.seed
   config.filter_run_when_matching :focus
   config.order = :random

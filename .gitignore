@@ -12,3 +12,5 @@ config/database.yml
 coverage
 
 spec/examples.txt
+
+/config/master.key

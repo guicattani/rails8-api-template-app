@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source "https://gem.coop"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.4.4"
 
 gem "rails", "~> 8.0.0"
 
@@ -36,8 +35,6 @@ end
 group :test do
   gem "database_cleaner"
   gem "rspec-rails"
-  gem 'rspec-watcher'
   gem "shoulda-matchers", require: false
   gem "simplecov"
-  gem "testcontainers-postgres"
 end
